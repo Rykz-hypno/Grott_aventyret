@@ -420,12 +420,9 @@
                             circleRect.top < trollRect.bottom &&
                             circleRect.bottom > trollRect.top
                         ) {
-                            message.innerHTML = "<p>Trollet är nära<br>Fånga han när du får syn på honom</p>";
-                            message.style.color = "green";
-                            
+                            showSnailBubble("Trollet är nära! Fånga honom när du får syn på honom.", 3000);
                         } else {
-                            message.textContent = "Inget här! Försök igen.";
-                            message.style.color = "red";
+                            showSnailBubble("Inget här! Försök igen.", 3000);
                         }
 
                         
@@ -789,6 +786,29 @@
         }, 20000); 
     }
     startRandomFacts();
+
+    function showSnailBubble(text, duration) {
+        const snail = document.querySelector('.snail-square');
+        if (!snail) return;
+
+        const bubble = document.createElement('div');
+        bubble.classList.add('snail-speech-bubble');
+        bubble.textContent = text;
+        snail.appendChild(bubble);
+
+        adjustSpeechBubblePosition(bubble, snail);
+
+        // Flippa pratbubblan och ändra innehållet efter halva tiden
+        setTimeout(() => {
+            bubble.style.transform = 'scaleX(-1)'; // Flippa horisontellt
+            
+        },15000 );
+
+        // Ta bort pratbubblan efter hela tiden
+        setTimeout(() => {
+            bubble.remove();
+        }, duration);
+    }
 
 </script>
 </body>

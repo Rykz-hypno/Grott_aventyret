@@ -133,7 +133,8 @@
         }
 
         .circle:hover {
-            transform: scale(1.1); /* Gör stenen lite större vid hover */
+            transform: scale(1.1);
+            transition: transform 0.2s ease; 
         }
 
         .circle.disappear {
@@ -147,22 +148,9 @@
             transition: transform 0.3s ease; 
         }
 
-        .message {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            margin: 0;
-            font-size: 2em;
-            color: green;
-            text-align: center;
-            z-index: 1001; 
-            display: none; 
-            background-color: rgba(0, 0, 0, 0.6); 
-            padding: 20px 40px; 
-            border: 2px solid rgba(255, 255, 255, 0.8); 
-            border-radius: 20px; 
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
+        .troll:hover {
+            transform: scale(1.1); 
+            transition: transform 0.2s ease; 
         }
 
         .blackout-curtain {
@@ -196,7 +184,7 @@
             height: 170px;
             width: 170px;
             background-image: url('img/ficklampa.png');
-            background-size: 50%;
+            background-size: 45%;
             background-repeat: no-repeat;
             background-position-y: 20px;
             background-position-x: 10px;
@@ -205,6 +193,12 @@
             border-radius: 100%;
             cursor: pointer;
             z-index: 999; 
+        }
+        
+        .spotlight-button:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+            transform: scale(1.1); 
+            transition: transform 0.2s ease; 
         }
 
         .spotlight {
@@ -386,6 +380,7 @@
                 circle.style.transition = "transform 0.3s ease, left 0.3s ease, top 0.3s ease"; // Smidig animation
                 circle.style.animation = "rotateBackAndForth 0.5s ease infinite";
 
+
                 circle.addEventListener('click', () => {
 
                     circle.classList.add('hacked');
@@ -413,26 +408,33 @@
                         const circleRect = circle.getBoundingClientRect();
                         const trollRect = troll.getBoundingClientRect();
 
-                        // Kontrollera om trollet överlappar stenen
-                        if (
-                            circleRect.left < trollRect.right &&
-                            circleRect.right > trollRect.left &&
-                            circleRect.top < trollRect.bottom &&
-                            circleRect.bottom > trollRect.top
-                        ) {
-                            showSnailBubble("Trollet är nära! Fånga honom när du får syn på honom.", 3000);
-                        } else {
-                            showSnailBubble("Inget här! Försök igen.", 3000);
+                        const snail = document.querySelector('.snail-square');
+                        if (snail) {
+                            const bubble = document.createElement('div');
+                            bubble.classList.add('snail-speech-bubble');
+                            bubble.id('testbubble')
+
+                            if (
+                                circleRect.left < trollRect.right &&
+                                circleRect.right > trollRect.left &&
+                                circleRect.top < trollRect.bottom &&
+                                circleRect.bottom > trollRect.top
+                            ) {
+                                bubble.innerHTML = "<p>Trollet är nära Fånga han när du får syn på honom</p>";
+                                bubble.style.color = "green";
+                            } else {
+                                bubble.textContent = "Inget här! Försök igen.";
+                                bubble.style.color = "red";
+                            }
+
+                            snail.appendChild(bubble);
+
+                            setTimeout(() => {
+                                bubble.remove();
+                            }, 3000);
                         }
-
-                        
-                        message.style.display = 'block';
-
-                        
-                        setTimeout(() => {
-                            message.style.display = 'none';
-                        }, 3000);
                     }
+
                 });
 
                 gameContainer.appendChild(circle);
@@ -721,6 +723,8 @@
     // 1
     setTimeout(() => {
         snail.style.right = '25%';
+        //const bubble = snail.querySelector('.snail-speech-bubble');
+        bubble.style.transform = 'scaleX(-1)';
  
         // 2
         setTimeout(() => {
@@ -737,6 +741,11 @@
                             // Vänder
                         setTimeout(() => {
                             snail.style.transform = 'scaleX(-1)';
+                            const bubble = document.getElementById('testbubble');
+if (bubble) {
+  bubble.style.transform = 'scaleX(-1)';
+}
+
                         }, 6000);
                         });
                     });
@@ -747,6 +756,7 @@
 }, 7000);
 
     const randomFacts = [
+
         "Visste du att kalksten är en sedimentär bergart som bildas av döda organismer?",
         "Kalkgrottor kan vara hem för många olika djurarter!",
         "Troll är kända för att vara skygga och sällan ses av människor.",
@@ -786,29 +796,6 @@
         }, 20000); 
     }
     startRandomFacts();
-
-    function showSnailBubble(text, duration) {
-        const snail = document.querySelector('.snail-square');
-        if (!snail) return;
-
-        const bubble = document.createElement('div');
-        bubble.classList.add('snail-speech-bubble');
-        bubble.textContent = text;
-        snail.appendChild(bubble);
-
-        adjustSpeechBubblePosition(bubble, snail);
-
-        // Flippa pratbubblan och ändra innehållet efter halva tiden
-        setTimeout(() => {
-            bubble.style.transform = 'scaleX(-1)'; // Flippa horisontellt
-            
-        },15000 );
-
-        // Ta bort pratbubblan efter hela tiden
-        setTimeout(() => {
-            bubble.remove();
-        }, duration);
-    }
 
 </script>
 </body>

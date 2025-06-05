@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" type="image/png" href="img/troll.png">
+    <link href="https://fonts.googleapis.com/css2?family=Ceviche+One&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+    <title>Grottäventyret</title>
+  </head>
+  <body>
+    <div class="content">
+      <div class="blackout-curtain" id="blackoutCurtain">
+        <img src="img/grott_äventyret.png" class="cave-image" id="caveImage">
+      </div>
+      <div class="banner">
+        <img src="img/grott_äventyret.png" alt="Grott Äventyret logga" class="banner_logo">
+        <h1 class="banner_title">Hitta och fånga Trollet</h1>
+        <div class="banner_counter" id="counter">
+          Troll hittade: <span>0</span>
+        </div>
+      </div>
+      <div class="game-container" id="gameContainer">
+        <!-- INTERACTIVE ROCKS -->
+      </div>
+      <div class="screen-filter"></div>
+      <div class="message" id="message"></div>
+      <div class="spotlight-container">
+        <button class="spotlight-button" id="spotlightButton">
+          <img src="img/ficklampa.png" alt="Ficklampa" class="spotlight-icon">
+        </button>
+                <button class="mute-button">
+          <img src="img/mute.png" alt="Mute" class="mute-icon">
+        </button>
+      </div>
+      <div class="spotlight" id="spotlight"></div>
+    </div>
+    <script src="js/grottaventyret.js"></script>
+  </body>
+</html>

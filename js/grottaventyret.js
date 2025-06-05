@@ -3,30 +3,30 @@
 /////////////////////////////
 
 const rockSounds = [
-  '../ljud/sten/sten_1.mp3',
-  '../ljud/sten/sten_2.mp3',
-  '../ljud/sten/sten_3.mp3',
-  '../ljud/sten/sten_4.mp3',
-  '../ljud/sten/sten_5.mp3',
+  'ljud/sten/sten_1.mp3',
+  'ljud/sten/sten_2.mp3',
+  'ljud/sten/sten_3.mp3',
+  'ljud/sten/sten_4.mp3',
+  'ljud/sten/sten_5.mp3',
 ];
 const flashlightOn = [
-  '/Grott_aventyret/tree/mainljud/ficklampa/ficklampa_on.mp3',
+  'ljud/ficklampa/ficklampa_on.mp3',
 ];
 const flashlightOff = [
-  '/Grott_aventyret/tree/mainljud/ficklampa/ficklampa_off.mp3'
+  'ljud/ficklampa/ficklampa_off.mp3'
 ];
 const trollsounds = [
-  '../ljud/troll/giggle.mp3',
-  '../ljud/troll/springa.mp3',
-  '../ljud/troll/wee_1.mp3',
-  '../ljud/troll/wee_2.mp3',
+  'ljud/troll/giggle.mp3',
+  'ljud/troll/springa.mp3',
+  'ljud/troll/wee_1.mp3',
+  'ljud/troll/wee_2.mp3',
   '../ljud/troll/wee_3.mp3',
 ];
 const troll1up = [
-  '../ljud/troll/1up.mp3'
+  'ljud/troll/1up.mp3'
 ];
 const ambientSounds = [
-  '../ljud/ambi/ambientLoop.mp3',
+  'ljud/ambi/ambientLoop.mp3',
 ];
 
 /////////////////////////////

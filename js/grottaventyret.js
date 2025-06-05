@@ -10,10 +10,10 @@ const rockSounds = [
   '../ljud/sten/sten_5.mp3',
 ];
 const flashlightOn = [
-  'ljud/ficklampa/ficklampa_on.mp3',
+  '/Grott_aventyret/tree/mainljud/ficklampa/ficklampa_on.mp3',
 ];
 const flashlightOff = [
-  'ljud/ficklampa/ficklampa_off.mp3'
+  '/Grott_aventyret/tree/mainljud/ficklampa/ficklampa_off.mp3'
 ];
 const trollsounds = [
   '../ljud/troll/giggle.mp3',

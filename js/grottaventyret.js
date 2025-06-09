@@ -20,7 +20,7 @@ const trollsounds = [
   'ljud/troll/springa.mp3',
   'ljud/troll/wee_1.mp3',
   'ljud/troll/wee_2.mp3',
-  '../ljud/troll/wee_3.mp3',
+  'ljud/troll/wee_3.mp3',
 ];
 const troll1up = [
   'ljud/troll/1up.mp3'

@@ -149,7 +149,7 @@ Main Game
             opacity: 1;
         }
 
-      .mute-button {
+      .muteButton {
             position: fixed;
             bottom: 5px;
             right: 170px;
@@ -164,7 +164,7 @@ Main Game
             cursor: pointer;
             z-index: 1001; 
         }
-        .mute-icon {
+        #muteIcon {
             position: absolute;
             bottom: 60%;
             right: 65%;
@@ -177,7 +177,7 @@ Main Game
             cursor: pointer;
             z-index: 1001;
         }
-        .mute-icon:hover {
+        #muteIcon:hover {
             transform: translate(70%, 70%) scale(1.2) rotate(10deg);
             filter: brightness(1.3) drop-shadow(0 0 8px rgba(0,255,255,0.7));
         }
@@ -461,7 +461,7 @@ Main Game
   background-size: cover;
   background-position: center;
   border-radius: 50%;
-  transition: left 2s ease, top 2s ease;
+  transition: left 1.5s ease, top 1.5s ease;
   z-index: 1000;
   cursor: pointer;
 }

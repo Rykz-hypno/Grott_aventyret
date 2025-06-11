@@ -61,12 +61,17 @@ const SLIME_OFFSET_Y = -25;   // justera vertikalt
 /////////////////////////////
 // ambient loop
 /////////////////////////////
+let ambientSound = null;
+let rockSound = null;
+const allSounds = [];
+let isMuted = false;
 
 function ambientBackground() {
-  const sound = new Audio(ambientSounds);
-  sound.volume = 0;
-  sound.loop = true;
-  sound.play();
+  ambientSound = new Audio(ambientSounds);
+  ambientSound.volume = 0;
+  ambientSound.loop = true;
+  ambientSound.play();
+  allSounds.push(ambientSound);
 
   // Fade in
   let volume = 0;
@@ -79,7 +84,7 @@ function ambientBackground() {
   const fadeIn = setInterval(() => {
     if (volume < targetVolume) {
       volume += volumeStep;
-      sound.volume = Math.min(volume, targetVolume);
+      ambientSound.volume = Math.min(volume, targetVolume);
     } else {
       clearInterval(fadeIn);
     }
@@ -165,8 +170,15 @@ function createRocks() {
     rocksArr.push(rock);
 
     rock.addEventListener('click', () => { 
-      const sound = new Audio(rockSounds[Math.floor(Math.random() * rockSounds.length)]);
-      sound.play();
+      rockSound = new Audio(rockSounds[Math.floor(Math.random() * rockSounds.length)]);
+
+      if (!isMuted){
+        rockSound.play();
+      }
+      else {
+        rockSound.pause();
+        rockSound.currentTime = 0;
+      }
 
       if (rock.classList.contains('disappear')) return;   
 
@@ -198,8 +210,15 @@ function createRocks() {
 const troll = document.querySelector('.troll');
 if (troll && isTrollOnRock(troll, rock) && !trollCaught) {
   trollCounter++;
-  const sound = new Audio(trollsounds[Math.floor(Math.random() * trollsounds.length)]);
-  sound.play();
+  trollSound = new Audio(trollsounds[Math.floor(Math.random() * trollsounds.length)]);
+        if (!isMuted){
+        trollSound.play();
+      }
+      else {
+        trollSound.pause();
+        trollSound.currentTime = 0;
+      }
+  
   document.getElementById('counter').textContent =`Troll hittade: ${trollCounter}`;
   const score = document.createElement('div');
   score.className = 'score-pop plus1';
@@ -440,9 +459,16 @@ function createTroll() {
 
 troll.addEventListener('click', () => {
 
-  const sound = new Audio(troll1up); sound.play();
-
   if (trollCaught || trollJumping || !trollClickable) return;
+    troll1upSound = new Audio(troll1up);
+          if (!isMuted){
+        troll1upSound.play();
+      }
+      else {
+        troll1upSound.pause();
+        troll1upSound.currentTime = 0;
+      }
+
 
   trollClickable = false; // stäng av klickmöjlighet tills nästa avslöjning
   trollJumping = true;
@@ -707,7 +733,14 @@ let spotlightRunning = false;
 
 spotlightButton.addEventListener('click', () => {
 
-const sound = new Audio(flashlightOn); sound.play();
+flashSoundOn = new Audio(flashlightOn);
+        if (!isMuted){
+        flashSoundOn.play();
+      }
+      else {
+        flashSoundOn.pause();
+        flashSoundOn.currentTime = 0;
+      }
 
   if (spotlightRunning) return;     
   spotlightRunning = true;
@@ -728,7 +761,14 @@ const sound = new Audio(flashlightOn); sound.play();
 
    setTimeout(() => {           
     spotlight.classList.remove('visible');
-    const sound = new Audio(flashlightOff); sound.play();
+    flashSoundOff = new Audio(flashlightOff);
+            if (!isMuted){
+        flashSoundOff.play();
+      }
+      else {
+        flashSoundOff.pause();
+        flashSoundOff.currentTime = 0;
+      }
     setTimeout(() => {            
       spotlight.style.animation = '';
       spotlightRunning = false;          
@@ -748,3 +788,20 @@ function stopAllTimers() {
   clearTimeout(randomFactInterval);
   randomFactInterval = null;
 }
+
+  const muteButton = document.getElementById("muteButton");
+
+  muteButton.addEventListener("click", () => {
+isMuted = !isMuted;
+    allSounds.forEach(sound => {
+      if (isMuted) {
+        sound.pause();
+      }
+      else {
+        sound.currentTime = 0;
+        sound.play();
+      }
+  muteIcon.src = isMuted ? "img/högtalare/högtalare_noCheck.png" : "img/högtalare/högtalare_check.png";
+    }); 
+
+  });
